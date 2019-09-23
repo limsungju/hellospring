@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -59,7 +60,7 @@ public class HelloController {
 	
 	@RequestMapping("/hello5")
 	// @ModelAttribute를 넣어주면 model에 셋팅한 값을 jsp에서 사용할 수 있다.
-	public String hello4(@ModelAttribute User user, Model model) {
+	public String hello5(@ModelAttribute User user, Model model) {
 		System.out.println(user);
 		
 		model.addAttribute("email", user.getEmail());
@@ -69,6 +70,26 @@ public class HelloController {
 		return "/WEB-INF/views/hello.jsp";
 	}
 	
+	/*
+	 * 기술 침투 !!!!
+	 * 비추천
+	 * 다른 WAS에서 사용을 못함 ( 이식성이 떨어짐 )
+	@RequestMapping("/hello6")
+	public void hello6(HttpServletRequest request,HttpServletResponse response,
+			Writer out, Model model) throws ServletException, IOException {
+		
+		//request.getRequestDispatcher("/WEB-INF/views/hello.jsp").forward(request, response);
+		out.write("<h1>Hello World</h1>");
+		
+		return ;
+	}
+	*/
 	
+	@ResponseBody // 응답 바디라는 표시
+	@RequestMapping("/hello7")
+	public String hello7() {
+		
+		return "<h1>Hello World</h1>";
+	}
 	
 }

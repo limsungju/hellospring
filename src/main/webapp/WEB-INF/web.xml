@@ -3,6 +3,7 @@
   <display-name>hellospring</display-name>
   
   <!-- spring servlet mapping -->
+  <!-- servlet-name을 바꾸면 "spring"-servlet.xml 파일 이름도 바꾸어야 한다. -->
   <servlet>
 	<servlet-name>spring</servlet-name>
 	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class> <!-- Spring Framework가 만듬 -->
